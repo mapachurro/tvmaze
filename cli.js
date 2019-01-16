@@ -21,6 +21,9 @@ if( !term) {
 
 if (search === "show") {
     console.log("Searching for TV show")
+    userQuery = new TV;
+    userQuery.findShow(term);
+
 } else {
     console.log("Searching for TV actor")
 }

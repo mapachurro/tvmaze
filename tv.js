@@ -1,5 +1,8 @@
 
-axios = require("axios");
+var axios = require("axios");
+
+var fs = require("fs");
+
 
 var TV = function () {
   this.findShow = function (show) {
@@ -8,13 +11,29 @@ var TV = function () {
 
     axios.get(URL)
       .then(function (response) {
-        console.log(response);
-        showInfo = response;
+        showData = response.data;
+        showName = response.data.name;
+        showGenre = response.data.genres;
+        showRating = response.data.rating.average;
+        showNetwork = response.data.network.name;
+        showSummary = response.data.summary;
+
+        var appendText = (showName + ". " + showGenre + ". " + showRating + ". " + showNetwork + ". " + showSummary);
+        fs.appendFile("log.txt", appendText, function (err) {
+          if (err) {
+            console.log("Whups!" + err);
+          }
+
+          else {
+            console.log("Content Added!");
+          }
+
+        })
+
       })
       .catch(function (error) {
         console.log(error);
       })
-
   };
 };
 
