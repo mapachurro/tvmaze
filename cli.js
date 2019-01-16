@@ -1,6 +1,8 @@
 var axios = require("axios");
+
 var fs = require("fs");
 
+var TV = require("./tv.js");
 
 var search = process.argv[2];
 
@@ -13,6 +15,8 @@ if (!search) {
 
 if( !term) {
     term = "Andy Griffith"
+    userQuery = new TV;
+    userQuery.findShow(term);
 }
 
 if (search === "show") {
@@ -22,4 +26,3 @@ if (search === "show") {
 }
 
 console.log(search + " " + term);
-
