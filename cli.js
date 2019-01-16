@@ -24,7 +24,25 @@ if (search === "show") {
     userQuery = new TV;
     userQuery.findShow(term);
 
-} else {
+} 
+
+// if (!search) {
+//     search = "actor";
+// }
+
+// if( !term) {
+//     term = "Andy Griffith"
+//     userQuery = new TV;
+//     userQuery.findActor(term);
+// }
+
+if (search === "actor") {
+    console.log("Searching for actor")
+    userQuery = new TV;
+    userQuery.findActor(term);
+}
+
+else {
     console.log("Searching for TV actor")
 }
 

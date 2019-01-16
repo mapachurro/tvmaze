@@ -27,14 +27,50 @@ var TV = function () {
           else {
             console.log("Content Added!");
           }
-
         })
-
       })
       .catch(function (error) {
         console.log(error);
       })
   };
+
+
+
+
+  this.findActor = function(actor) {
+    var URL = "http://api.tvmaze.com/search/people?q=" + actor;
+  
+    axios.get(URL)
+    .then(function (response) {
+      var actorName = response.data[0].person.name; 
+      var actorBirthday = response.data[0].person.birthday;
+      var actorGender = response.data[0].person.gender;
+      var actorCountry = response.data[0].person.country.name;
+      var actorURL = response.data[0].person.url;
+      
+      var appendText = (actorName + ". " + actorBirthday + ". " + actorGender + ". " + actorCountry + ". " + actorURL);      
+      fs.appendFile("log.txt", appendText, function (err) {
+        if (err) {
+          console.log("Whups!" + err);
+        }
+        else {
+          console.log("Content Added!");
+        }
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  
+    };
+  
+
+
 };
+
+
+
+
+
 
 module.exports = TV;
